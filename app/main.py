@@ -10,6 +10,15 @@ app = FastAPI(
     description="An AI service that generates fantasy stories inspired by an image."
 )
 
+@app.get("/health", status_code=status.HTTP_200_OK)
+def perform_health_check():
+    """
+    Performs a health check on the application.
+    It returns a 200 OK status if the application is running.
+    This endpoint is used by the hosting platform to verify service health.
+    """
+    return {"status": "ok"}
+
 @app.get("/")
 def read_root():
     """A simple root endpoint to check if the API is running."""
