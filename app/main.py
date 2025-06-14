@@ -1,6 +1,6 @@
 # app/main.py
 
-from fastapi import FastAPI, File, UploadFile
+from fastapi import FastAPI, File, UploadFile, status
 from PIL import Image
 import io
 from .ai_core import get_image_caption, generate_story_from_caption
