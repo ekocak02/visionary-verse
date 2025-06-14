@@ -1,0 +1,37 @@
+# .github/workflows/main.yml
+
+name: Visionary Verse - CI/CD
+
+# Bu iş akışı ne zaman çalışacak?
+# 'main' branch'ine her 'push' yapıldığında.
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  build_and_push_docker_image:
+    # İşin çalışacağı sanal ortam
+    runs-on: ubuntu-latest
+
+    # İşin adımları
+    steps:
+      # 1. Adım: Depodaki kodları sanal ortama indirir.
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # 2. Adım: Docker Hub'a giriş yapmak için
+      # Gerekli olan gizli anahtarları (secrets) bir sonraki adımda GitHub'a ekleyeceğiz.
+      - name: Log in to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      # 3. Adım: Docker imajını oluşturur ve Docker Hub'a yükler.
+      # İmajı "kullaniciadi/projeadi:latest" formatında etiketliyoruz.
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          push: true
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/visionary-verse:latest

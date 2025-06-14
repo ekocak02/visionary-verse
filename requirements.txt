@@ -1,0 +1,15 @@
+#requirements.txt
+
+fastapi
+uvicorn[standard]
+python-multipart
+
+Pillow
+
+torch
+torchaudio
+torchvision
+transformers
+accelerate
+numpy
+safetensors
