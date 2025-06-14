@@ -6,9 +6,11 @@ FROM python:3.9-slim
 
 # Set the working directory inside the container.
 WORKDIR /code
+RUN useradd --no-create-home --shell /bin/bash appuser
 
 ENV HF_HOME=/code/.cache
 
+RUN mkdir -p /code/.cache && chown -R appuser:appuser /code/.cache
 # IMPORTANT OPTIMIZATION:
 # First, copy and install only the dependency list.
 # This prevents reinstalling hundreds of MBs of libraries every time we change
