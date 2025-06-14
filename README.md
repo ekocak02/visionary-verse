@@ -1,18 +1,3 @@
----
-title: Visionary Verse
-emoji: ✒️
-colorFrom: green
-colorTo: blue
-sdk: docker
-app_port: 8000
-readiness_check:
-  path: /health
----
-
-Check out the configuration reference at https://huggingface.co/docs/hub/spaces-config-reference
-
----
-
 # Visionary Verse ✒️
 
 [![Hugging Face Spaces](https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-Spaces-yellow)](https://ekocak-visionary-verse.hf.space)
